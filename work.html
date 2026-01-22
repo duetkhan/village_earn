@@ -6,10 +6,14 @@
   <title>Village Earn - Work</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <!-- Monetag Ads -->
-  <script src="//libtl.com/sdk.js" data-zone="INTERSTITIAL_ZONE_ID" data-sdk="show_10497540"></script>
-  <script src="//libtl.com/sdk.js" data-zone="REWARDED_ZONE_ID" data-sdk="show_rewarded"></script>
-  <script src="//libtl.com/sdk.js" data-zone="BANNER_ZONE_ID" data-sdk="show_banner"></script>
+
+  <!-- Monetag Multi Tag JS -->
+  <!-- Banner -->
+  <script src="https://quge5.com/88/tag.min.js" data-zone="204416" async data-cfasync="false"></script>
+  <!-- Interstitial -->
+  <script src="https://quge5.com/88/tag.min.js" data-zone="INTERSTITIAL_ZONE_ID" async data-cfasync="false"></script>
+  <!-- Rewarded -->
+  <script src="https://quge5.com/88/tag.min.js" data-zone="REWARDED_ZONE_ID" async data-cfasync="false"></script>
 </head>
 <body>
   <header>
@@ -21,13 +25,11 @@
     <button id="startWorkBtn">Start Work</button>
 
     <div id="floatingBtnContainer"></div>
-
     <p>Balance: <span id="balance">0</span> ৳</p>
-  </main>
 
-  <footer>
+    <!-- Banner Ad -->
     <div id="bannerAd"></div>
-  </footer>
+  </main>
 
   <script>
     const tg = window.Telegram.WebApp;
@@ -47,27 +49,27 @@
     function showFloatingButton() {
       floatingContainer.innerHTML = '<button id="floatingBtn">Watch Rewarded Ad (+5 ৳)</button>';
       document.getElementById('floatingBtn').addEventListener('click', () => {
-        show_rewarded().then(() => {
-          updateBalance(5);
-          floatingContainer.innerHTML = ''; // Hide after click
-        }).catch(console.error);
+        if(window.show_rewarded) {
+          show_rewarded().then(() => {
+            updateBalance(5);
+            floatingContainer.innerHTML = '';
+          }).catch(console.error);
+        }
       });
     }
 
     document.getElementById('startWorkBtn').addEventListener('click', () => {
-      show_10497540().then(() => {
-        adCount++;
-        if(adCount >= 20) {
-          showFloatingButton();
-          adCount = 0; // Reset ad counter
-        }
-      }).catch(console.error);
-    });
-
-    // Banner ad
-    document.addEventListener('DOMContentLoaded', () => {
-      show_banner({container: 'bannerAd'});
+      if(window.show_10497540) {
+        show_10497540().then(() => {
+          adCount++;
+          if(adCount >= 20) {
+            showFloatingButton();
+            adCount = 0;
+          }
+        }).catch(console.error);
+      }
     });
   </script>
 </body>
 </html>
+
