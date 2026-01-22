@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Village Earn</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!-- Monetag Banner Ad -->
+  <script src="//libtl.com/sdk.js" data-zone="YOUR_BANNER_ZONE_ID" data-sdk="show_banner"></script>
+</head>
+<body>
+  <header>
+    <h1>Village Earn</h1>
+  </header>
+
+  <main>
+    <h2>Welcome to Village Earn!</h2>
+    <button id="goWorkBtn">Go Work</button>
+  </main>
+
+  <footer>
+    <div id="bannerAd"></div>
+  </footer>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+
+    document.getElementById('goWorkBtn').addEventListener('click', () => {
+      window.location.href = 'work.html';
+    });
+
+    // Show banner ad
+    document.addEventListener('DOMContentLoaded', () => {
+      show_banner({container: 'bannerAd'});
+    });
+  </script>
+</body>
+</html>
