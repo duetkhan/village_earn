@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LSR Earning Point</title>
 <link rel="stylesheet" href="style.css">
+
 <!-- Monetag SDK -->
 <script src='//libtl.com/sdk.js' data-zone='10497540' data-sdk='show_10497540'></script>
 </head>
@@ -17,9 +18,10 @@
     <h1>LSR Earning Point</h1>
   </header>
 
-  <!-- In-page Push Ad (Top) -->
-  <div class="inpage-ad" id="inpage-ad">
-    Push Ad Here
+  <!-- Banner Ads Top -->
+  <div class="banner-ads">
+    <div class="banner" id="banner1">Banner Ad 1</div>
+    <div class="banner" id="banner2">Banner Ad 2</div>
   </div>
 
   <!-- Watch Ad Section -->
@@ -28,10 +30,9 @@
     <div class="balance">Balance: <span id="balance">0</span> TK</div>
   </div>
 
-  <!-- Vignette Banners (Bottom) -->
-  <div class="banner-ads">
-    <div class="banner" id="banner1">Banner Ad 1</div>
-    <div class="banner" id="banner2">Banner Ad 2</div>
+  <!-- Click This Ad Section -->
+  <div class="click-this-section" style="display:none;">
+    <button id="click-this-ad-btn">Click This Ad</button>
   </div>
 
   <!-- Rewarded Modal / Interstitial -->
@@ -41,15 +42,11 @@
     <button id="close-btn" disabled>Close</button>
   </div>
 
-  <!-- Click This Ad Section (After 20 Ads) -->
-  <div class="click-this-section" style="display:none;">
-    <button id="click-this-ad-btn">Click This Ad</button>
-  </div>
-
   <!-- Withdraw Section -->
   <div class="withdraw-section">
     <h3>Withdraw Balance</h3>
     <input type="number" id="withdraw-amount" placeholder="Enter amount (min 110 TK)">
+    <input type="text" id="withdraw-account" placeholder="Enter Bkash/Nagad Account Number">
     <select id="withdraw-method">
       <option value="bkash">Bkash</option>
       <option value="nagad">Nagad</option>
@@ -57,14 +54,18 @@
     <button id="withdraw-btn">Submit Withdraw</button>
   </div>
 
+  <!-- Push Ad Bottom -->
+  <div class="inpage-ad" id="inpage-ad">Push Ad Here</div>
+
 </div>
 
 <!-- Monetag Scripts -->
 <script>
-  // In-Page Push
+  // In-page Push
   (function(s){s.dataset.zone='10501314',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
-  // Vignette Banner
-  (function(s){s.dataset.zone='10501321',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+  // Vignette Banner Top
+  (function(s){s.dataset.zone='10501321',s.src='https://gizokraijaw.net/vignette.min.js'})(document.getElementById('banner1').appendChild(document.createElement('script')));
+  (function(s){s.dataset.zone='10501321',s.src='https://gizokraijaw.net/vignette.min.js'})(document.getElementById('banner2').appendChild(document.createElement('script')));
   // OnClick Popunder
   (function(s){s.dataset.zone='10501336',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
 </script>
