@@ -1,111 +1,82 @@
-let balance=0, watchedAds=0;
-const maxAdsBeforeClickThis=20;
+let balance = 0;
+let watched = 0;
 
-const adContainer = document.getElementById('monetag-ad-container');
+const watchBtn = document.getElementById("watchBtn");
+const clickBtn = document.getElementById("clickBtn");
+const clickBox = document.getElementById("clickBox");
 
-function checkClickThisAd(){
-  if(watchedAds>=maxAdsBeforeClickThis){
-    document.getElementById('watch-ad-btn').style.display='none';
-    document.querySelector('.click-this-section').style.display='block';
-  }
-}
+const modal = document.getElementById("modal");
+const timerText = document.getElementById("timerText");
+const closeBtn = document.getElementById("closeBtn");
 
-// Watch Ad → Rewarded / Interstitial
-function showRewardAd(){
-  const modal=document.getElementById('reward-ad-modal');
-  const closeBtn=document.getElementById('close-btn');
-  const timerText=document.getElementById('timer-text');
-
-  modal.style.display='block';
+function startAdTimer(callback){
+  modal.style.display="block";
   closeBtn.disabled=true;
-  adContainer.innerHTML="";
-
-  timerText.innerText="Video starting...";
-
-  // Monetag rewarded/interstitial video
-  show_10497540({ type:'inApp', inAppSettings:{ frequency:1, timeout:5 }})
-    .then(()=>console.log("Rewarded video started"))
-    .catch(e=>console.log(e));
-
-  // Timer UI
-  let seconds=15;
-  const timer=setInterval(()=>{
-    seconds--;
-    timerText.innerText=seconds+" sec remaining";
-    if(seconds<=0){
-      clearInterval(timer);
+  let sec = 15;
+  timerText.innerText = sec + " seconds...";
+  let t = setInterval(()=>{
+    sec--;
+    timerText.innerText = sec + " seconds...";
+    if(sec<=0){
+      clearInterval(t);
       closeBtn.disabled=false;
-      timerText.innerText="Close to claim reward";
+      timerText.innerText="You can close now";
+      closeBtn.onclick=()=>{
+        modal.style.display="none";
+        callback();
+      }
     }
   },1000);
-
-  closeBtn.onclick=()=>{
-    modal.style.display='none';
-    watchedAds++;
-    checkClickThisAd();
-  };
 }
 
-// Click This Ad → Rewarded Video + 5 TK
-function clickThisAd(){
-  const modal=document.getElementById('reward-ad-modal');
-  const closeBtn=document.getElementById('close-btn');
-  const timerText=document.getElementById('timer-text');
-
-  modal.style.display='block';
-  closeBtn.disabled=true;
-  adContainer.innerHTML="";
-
-  show_10497540()
-    .then(()=>{
-      balance+=5;
-      document.getElementById('balance').innerText=balance;
-      console.log("5 TK reward credited");
-    }).catch(e=>console.log(e));
-
-  let seconds=15;
-  const timer=setInterval(()=>{
-    seconds--;
-    timerText.innerText=seconds+" sec remaining";
-    if(seconds<=0){
-      clearInterval(timer);
-      closeBtn.disabled=false;
-      timerText.innerText="Video Finished! Close to claim reward";
+// WATCH AD
+watchBtn.onclick = ()=>{
+  showPopAd();
+  startAdTimer(()=>{
+    watched++;
+    if(watched>=20){
+      watchBtn.style.display="none";
+      clickBox.style.display="block";
     }
-  },1000);
-
-  closeBtn.onclick=()=>{
-    modal.style.display='none';
-    document.querySelector('.click-this-section').style.display='none';
-    document.getElementById('watch-ad-btn').style.display='inline-block';
-    watchedAds=0;
-  };
+  });
 }
 
-// Withdraw
-function withdrawBalance(){
-  const amount=parseInt(document.getElementById('withdraw-amount').value);
-  const account=document.getElementById('withdraw-account').value;
-  const method=document.getElementById('withdraw-method').value;
-
-  if(!account){ alert("Enter account number"); return;}
-  if(amount<110){ alert("Minimum withdraw 110 TK"); return;}
-  if(amount>balance){ alert("Insufficient balance"); return;}
-
-  balance-=amount;
-  document.getElementById('balance').innerText=balance;
-  alert(`Successful Request: Withdraw ${amount} TK to ${method} (${account})`);
-
-  // Auto popup ad on withdraw
-  show_10497540('pop').catch(e=>console.log(e));
+// CLICK THIS AD (+5 TK)
+clickBtn.onclick = ()=>{
+  showPopAd();
+  startAdTimer(()=>{
+    balance += 5;
+    document.getElementById("balance").innerText = balance;
+    watched = 0;
+    watchBtn.style.display="inline-block";
+    clickBox.style.display="none";
+  });
 }
 
-// Auto popup/popunder every 2 minutes
+// WITHDRAW
+document.getElementById("withdrawBtn").onclick = ()=>{
+  let amount = Number(document.getElementById("amount").value);
+  let acc = document.getElementById("account").value;
+
+  if(amount < 110) return alert("Minimum withdraw 110 TK");
+  if(amount > balance) return alert("Insufficient balance");
+  if(!acc) return alert("Enter account number");
+
+  balance -= amount;
+  document.getElementById("balance").innerText = balance;
+  alert("Withdraw Request Successful!");
+  showPopAd();
+}
+
+// POPUNDER FUNCTION
+function showPopAd(){
+  (function(s){
+    s.dataset.zone='10501336';
+    s.src='https://al5sm.com/tag.min.js';
+  })(document.body.appendChild(document.createElement('script')));
+}
+
+// AUTO POP EVERY 2 MIN
 setInterval(()=>{
-  show_10497540('pop').catch(e=>console.log(e));
+  showPopAd();
 },120000);
-
-// Event Listeners
-document.getElementById('watch-ad-btn').addEventListener('click', showRewardAd);
-document.getElementById('click-this-ad-btn').addEventListener('click', clickThisAd);
-document.getElementById('withdraw-btn').addEventListener('click', withdrawBalance);
