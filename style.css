@@ -1,142 +1,52 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f0f4f8;
-  margin: 0;
-  padding: 0;
+body{
+  font-family:Arial;
+  background:#eef3ff;
+  text-align:center;
 }
 
-.app-container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 10px;
+h1{
+  color:#2563eb;
 }
 
-header h1 {
-  text-align: center;
-  color: #1a73e8;
-  font-size: 28px;
+.banner{
+  margin:8px;
 }
 
-.banner-ads {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+.box{
+  margin:15px;
 }
 
-.banner {
-  width: 48%;
-  background: #ddd;
-  color: #333;
-  text-align: center;
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 16px;
+button{
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  background:#2563eb;
+  color:white;
 }
 
-.watch-ad-section {
-  text-align: center;
-  margin: 15px 0;
-}
-
-.watch-ad-section button {
-  font-size: 20px;
-  padding: 12px 25px;
-  border-radius: 12px;
-  background: #1a73e8;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.watch-ad-section button:disabled {
-  background: gray;
-  cursor: not-allowed;
-}
-
-.balance {
-  margin-top: 10px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-#reward-ad-modal {
-  display: none;
-  position: fixed;
-  top:50%; left:50%;
-  transform: translate(-50%, -50%);
-  width: 320px;
-  height: 270px;
-  background:#fff;
+#modal{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:white;
+  padding:20px;
   border:2px solid #333;
-  z-index: 9999;
-  padding:10px;
-  box-shadow:0 0 20px rgba(0,0,0,0.5);
+  z-index:9999;
 }
 
-#monetag-ad-container iframe {
-  width: 300px;
-  height: 250px;
+.withdraw{
+  background:white;
+  padding:15px;
+  border-radius:10px;
+  margin:20px;
 }
 
-#close-btn {
-  margin-top: 10px;
-  padding: 10px 20px;
-  font-size: 18px;
-  border-radius: 10px;
-  cursor: pointer;
-  background: #1a73e8;
-  color: #fff;
-  border: none;
-}
-
-.click-this-section {
-  text-align: center;
-  margin: 15px 0;
-}
-
-.click-this-section button {
-  font-size: 20px;
-  padding: 12px 25px;
-  border-radius: 12px;
-  background: #34a853;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.withdraw-section {
-  background: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 20px;
-}
-
-.withdraw-section input, .withdraw-section select {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-.withdraw-section button {
-  width: 100%;
-  font-size: 18px;
-  padding: 10px;
-  background: #fbbc05;
-  color: #000;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.inpage-ad {
-  background: #ddd;
-  color: #333;
-  text-align: center;
-  margin: 10px 0;
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 16px;
+.withdraw input{
+  width:90%;
+  padding:8px;
+  margin:6px;
+  font-size:16px;
 }
