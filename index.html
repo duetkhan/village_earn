@@ -1,73 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LSR Earning Point</title>
 <link rel="stylesheet" href="style.css">
 
 <!-- Monetag SDK -->
-<script src='//libtl.com/sdk.js' data-zone='10497540' data-sdk='show_10497540'></script>
+<script src="//libtl.com/sdk.js" data-zone="10497540" data-sdk="show_10497540"></script>
 </head>
 <body>
 
-<div class="app-container">
+<h1>LSR Earning Point</h1>
 
-  <!-- App Header -->
-  <header>
-    <h1>LSR Earning Point</h1>
-  </header>
-
-  <!-- Banner Ads Top -->
-  <div class="banner-ads">
-    <div class="banner" id="banner1">Banner Ad 1</div>
-    <div class="banner" id="banner2">Banner Ad 2</div>
-  </div>
-
-  <!-- Watch Ad Section -->
-  <div class="watch-ad-section">
-    <button id="watch-ad-btn">Watch Ad</button>
-    <div class="balance">Balance: <span id="balance">0</span> TK</div>
-  </div>
-
-  <!-- Click This Ad Section -->
-  <div class="click-this-section" style="display:none;">
-    <button id="click-this-ad-btn">Click This Ad</button>
-  </div>
-
-  <!-- Rewarded Modal / Interstitial -->
-  <div id="reward-ad-modal">
-    <div id="timer-text">15 seconds remaining</div>
-    <div id="monetag-ad-container"></div>
-    <button id="close-btn" disabled>Close</button>
-  </div>
-
-  <!-- Withdraw Section -->
-  <div class="withdraw-section">
-    <h3>Withdraw Balance</h3>
-    <input type="number" id="withdraw-amount" placeholder="Enter amount (min 110 TK)">
-    <input type="text" id="withdraw-account" placeholder="Enter Bkash/Nagad Account Number">
-    <select id="withdraw-method">
-      <option value="bkash">Bkash</option>
-      <option value="nagad">Nagad</option>
-    </select>
-    <button id="withdraw-btn">Submit Withdraw</button>
-  </div>
-
-  <!-- Push Ad Bottom -->
-  <div class="inpage-ad" id="inpage-ad">Push Ad Here</div>
-
+<!-- TOP BANNER ADS -->
+<div class="banner">
+<script>
+(function(s){
+  s.dataset.zone='10501321';
+  s.src='https://gizokraijaw.net/vignette.min.js';
+})(document.body.appendChild(document.createElement('script')));
+</script>
 </div>
 
-<!-- Monetag Scripts -->
+<div class="banner">
 <script>
-  // In-page Push
-  (function(s){s.dataset.zone='10501314',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
-  // Vignette Banner Top
-  (function(s){s.dataset.zone='10501321',s.src='https://gizokraijaw.net/vignette.min.js'})(document.getElementById('banner1').appendChild(document.createElement('script')));
-  (function(s){s.dataset.zone='10501321',s.src='https://gizokraijaw.net/vignette.min.js'})(document.getElementById('banner2').appendChild(document.createElement('script')));
-  // OnClick Popunder
-  (function(s){s.dataset.zone='10501336',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+(function(s){
+  s.dataset.zone='10501321';
+  s.src='https://gizokraijaw.net/vignette.min.js';
+})(document.body.appendChild(document.createElement('script')));
+</script>
+</div>
+
+<div class="box">
+<button id="watchBtn">Watch Ad</button>
+<p>Balance: <span id="balance">0</span> TK</p>
+</div>
+
+<div class="box" id="clickBox" style="display:none">
+<button id="clickBtn">Click This Ad</button>
+</div>
+
+<div id="modal">
+<p id="timerText">Wait...</p>
+<button id="closeBtn" disabled>Close</button>
+</div>
+
+<div class="withdraw">
+<h3>Withdraw</h3>
+<input id="amount" type="number" placeholder="Min 110 TK">
+<input id="account" type="text" placeholder="Bkash/Nagad Number">
+<button id="withdrawBtn">Withdraw</button>
+</div>
+
+<!-- PUSH AD BOTTOM -->
+<script>
+(function(s){
+  s.dataset.zone='10501314';
+  s.src='https://nap5k.com/tag.min.js';
+})(document.body.appendChild(document.createElement('script')));
 </script>
 
 <script src="script.js"></script>
